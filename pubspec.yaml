@@ -1,0 +1,23 @@
+name: devmob20251_app_ref_t1
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences:
+  provider:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
