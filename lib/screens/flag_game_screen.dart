@@ -60,7 +60,6 @@ class _FlagGameScreenState extends State<FlagGameScreen> {
     final base = [
       {'bandeira': 'assets/images/mtgrossosul.png', 'respostaCorreta': 'Mato Grosso do Sul'},
       {'bandeira': 'assets/images/acre.png', 'respostaCorreta': 'Acre'},
-      {'bandeira': 'assets/images/para.png', 'respostaCorreta': 'Pará'},
       {'bandeira': 'assets/images/paraiba.png', 'respostaCorreta': 'Paraíba'},
       {'bandeira': 'assets/images/pernambuco.png', 'respostaCorreta': 'Pernambuco'},
       {'bandeira': 'assets/images/piaui.png', 'respostaCorreta': 'Piauí'},
@@ -75,6 +74,7 @@ class _FlagGameScreenState extends State<FlagGameScreen> {
       {'bandeira': 'assets/images/tocantins.png', 'respostaCorreta': 'Tocantins'},
       {'bandeira': 'assets/images/mg.png', 'respostaCorreta': 'Minas Gerais'},
       {'bandeira': 'assets/images/es.png', 'respostaCorreta': ' Espírito Santo'},
+      {'bandeira': 'assets/images/amapa.png', 'respostaCorreta': 'Amapá'},
     ];
 
     return _gerarOpcoes(base);
@@ -193,42 +193,54 @@ class _FlagGameScreenState extends State<FlagGameScreen> {
     final pergunta = perguntas[perguntaAtual];
     final correta = pergunta['respostaCorreta'] as String;
     final opcoes = pergunta['opcoes'] as List<String>;
+return Scaffold(
+ appBar: AppBar(
+  leading: Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Image.asset(
+      'assets/images/logo2.png',
+      height: 100, // altura da logo
+      width: 70,  // largura da logo
+      fit: BoxFit.contain, // mantém proporção
+    ),
+  ),
+  title: Text('Olá, ${widget.nome}! - Nível $nivel'),
+),
 
-    return Scaffold(
-      appBar: AppBar(title: Text('Olá, ${widget.nome}! - Nível $nivel')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            const Text('Qual estado é essa bandeira?', style: TextStyle(fontSize: 20)),
-            const SizedBox(height: 16),
-            _buildFlag(pergunta['bandeira'] as String),
-            const SizedBox(height: 24),
-            Column(
-              children: opcoes.map((opcao) {
-                return Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.symmetric(vertical: 6),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                        _getCorBotao(opcao, correta) ?? Colors.grey,
-                      ),
-                      minimumSize: MaterialStateProperty.all(
-                        const Size(double.infinity, 50),
-                      ),
-                    ),
-                    onPressed: respostaSelecionada == null
-                        ? () => verificarResposta(opcao)
-                        : null,
-                    child: Text(opcao, style: const TextStyle(fontSize: 18)),
+  body: Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      children: [
+        const Text('Qual estado é essa bandeira?', style: TextStyle(fontSize: 20)),
+        const SizedBox(height: 16),
+        _buildFlag(pergunta['bandeira'] as String),
+        const SizedBox(height: 24),
+        Column(
+          children: opcoes.map((opcao) {
+            return Container(
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(vertical: 6),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    _getCorBotao(opcao, correta) ?? Colors.grey,
                   ),
-                );
-              }).toList(),
-            ),
-          ],
+                  minimumSize: MaterialStateProperty.all(
+                    const Size(double.infinity, 50),
+                  ),
+                ),
+                onPressed: respostaSelecionada == null
+                    ? () => verificarResposta(opcao)
+                    : null,
+                child: Text(opcao, style: const TextStyle(fontSize: 18)),
+              ),
+            );
+          }).toList(),
         ),
-      ),
-    );
+      ],
+    ),
+  ),
+);
+
   }
 }

@@ -40,6 +40,14 @@ class _FormScreenState extends State<FormScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // AQUI ESTÁ A LOGO
+            Image.asset(
+              'assets/images/logo2.png', // ajuste conforme o seu caminho
+              height: 400,
+            ),
+            const SizedBox(height: 24),
+
+            // Campos de texto
             TextField(
               controller: _nomeController,
               decoration: const InputDecoration(labelText: 'Nome'),
@@ -52,6 +60,10 @@ class _FormScreenState extends State<FormScreen> {
             ),
             const SizedBox(height: 32),
             ElevatedButton(
+               style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green, // Cor de fundo do botão
+                  foregroundColor: Colors.white, // Cor do texto e ícones
+               ),
               onPressed: _comecarJogo,
               child: const Text('Começar'),
             ),
